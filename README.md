@@ -20,7 +20,6 @@ Run the following command to install the required dependencies for this project:
 
 ```bash
 npm install express mysql2 body-parser ejs dotenv
-
 ### 3. Create the Database
 
 Follow these steps to set up the database:
@@ -42,5 +41,8 @@ CREATE TABLE usernames (
 Follow these steps to start the application:
 
 1. Ensure your MySQL database server is running.
-2. Run the following command to start the
+2. Run the following command to start the Express server:
+
+```bash
+npm start
 
