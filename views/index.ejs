@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+</head>
+<body>
+    <h1>Welcome to User Management</h1>
+
+    <!-- Navigation -->
+    <button onclick="window.location.href='/new'">Add New User</button>
+    <button onclick="deleteAllUsers()">Delete All Users</button>
+
+    <!-- Search Bar -->
+    <form method="GET" action="/">
+        <input type="text" name="search" placeholder="Search usernames" value="<%= searchQuery || '' %>" />
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- User List -->
+    <h2>User List</h2>
+    <% if (users.length > 0) { %>
+        <ul>
+            <% users.forEach(user => { %>
+                <li><%= user.username %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+
+    <script>
+        // Delete all users
+        function deleteAllUsers() {
+            if (confirm('Are you sure you want to delete all users?')) {
+                fetch('/delete', { method: 'GET' })
+                    .then(() => {
+                        alert('All users deleted!');
+                        window.location.reload();
+                    })
+                    .catch(err => alert('Error deleting users: ' + err.message));
+            }
+        }
+    </script>
+</body>
+</html>
